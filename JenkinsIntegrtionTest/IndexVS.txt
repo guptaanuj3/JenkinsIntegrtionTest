@@ -1,0 +1,72 @@
+@model IEnumerable<FTPDisplayTemplate.Models.Departure>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    font-size:20px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+    line-height:100%;
+}
+    </style>
+<table class="table" style="height:800px;width:900px;border-color:aqua;border:thin">
+    <tr style="background-color:royalblue">
+        <th>
+            @Html.DisplayNameFor(model => model.AirlineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduledTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flightnumber)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AirlineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduledTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Flightnumber)
+        </td>
+
+    </tr>
+}
+
+</table>

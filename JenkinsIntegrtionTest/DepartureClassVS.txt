@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace FTPDisplayTemplate.Models
+{
+    public class Departure
+    {
+        public string AirlineName { get; set; }
+        public string Destination { get; set; }
+        public string Status { get; set; }
+        public string Gate { get; set; }
+        public string ScheduledTime { get; set; }
+        public string Flightnumber { get; set; }
+    }
+
+    public class Departures
+    {
+        public List<Departure> Departurelist { get; set; }
+
+        public Departures()
+        {
+            Departurelist = new List<Departure>();
+        }
+    }
+}

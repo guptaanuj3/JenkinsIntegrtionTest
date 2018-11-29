@@ -1,0 +1,43 @@
+using FTPDisplayTemplate.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Xml;
+using System.Xml.Linq;
+using System.Configuration;
+
+namespace FTPDisplayTemplate.FTPDetails
+{
+    public class FTPReader
+    {
+        public List<Departure> ReadFTP()
+        {
+            var departures = new Departures();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(ConfigurationManager.AppSettings["FTPPath"]);
+            XmlNode StudentListNode = doc.SelectSingleNode("/Departures");
+            XmlNodeList StudentNodeList = StudentListNode.SelectNodes("Departure");
+
+            List<Departure> departurelist = new List<Departure>();
+            
+            foreach (XmlNode node in StudentNodeList)
+            {
+                Departure dep = new Departure();
+
+                dep.AirlineName = node.Attributes.GetNamedItem("AirlineName").Value.ToString();
+                dep.Destination = node.Attributes.GetNamedItem("Destination").Value.ToString();
+                dep.Status = node.Attributes.GetNamedItem("Status").Value.ToString();
+                dep.Gate = node.Attributes.GetNamedItem("Gate").Value.ToString();
+                dep.ScheduledTime = node.Attributes.GetNamedItem("ScheduledTime").Value.ToString();
+                dep.Flightnumber = node.Attributes.GetNamedItem("Flightnumber").Value.ToString();
+                departurelist.Add(dep);
+            }
+           
+
+            return departurelist;
+        }
+    }
+}
